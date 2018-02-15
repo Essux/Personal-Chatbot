@@ -10,7 +10,7 @@ port = int(os.environ["PORT"])
 @app.route('/today_pomos', methods=['POST'])
 def index():
     data = json.loads(request.get_data())
-    date = datetime.strptime(data["entities"]["datetime"]["iso"], "%Y-%m-%dT%H:%M:%S+00:00")
+    date = datetime.strptime(data["nlp"]["entities"]["datetime"]["iso"], "%Y-%m-%dT%H:%M:%S+00:00")
     date -= timedelta(hours=5)
     end = datetime(date.year, date.month, date.day) + timedelta(days=1)
     diff = end - date
