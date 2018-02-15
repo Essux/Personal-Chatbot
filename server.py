@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 port = int(os.environ["PATH"])
 
-@app.route('/', methods=['POST'])
+@app.route('/today_pomos', methods=['POST'])
 def index():
   return jsonify(
     status=200,
