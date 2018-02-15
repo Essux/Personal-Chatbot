@@ -10,6 +10,10 @@ port = int(os.environ["PATH"])
 def index():
   return jsonify(
     status=200,
+    replies=[{
+        'type' : 'text',
+        'content' : 'infinitos'
+    }]
   )
 
 @app.route('/errors', methods=['POST'])
