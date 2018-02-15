@@ -1,0 +1,15 @@
+{
+    "name": "Personal Assistant bot",
+    "description": "",
+    "image": "heroku/python",
+    "repository": "https://github.com/Essux/Personal-Chatbot",
+    "keywords": ["python", "flask" ],
+    "addons": [ "heroku-postgresql" ],
+    "environments": {
+      "test": {
+        "scripts": {
+          "test": "server.py test"
+        }
+      }
+    }
+  }
