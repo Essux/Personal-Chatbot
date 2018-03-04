@@ -27,7 +27,7 @@ def index():
     )
 
 @app.route('/pomos_conversion', methods=['POST'])
-def index():
+def pomos_conversion():
     data = json.loads(request.get_data())
     unit_to = data["nlp"]["entities"]["unit-time"][0]["value"]
 
