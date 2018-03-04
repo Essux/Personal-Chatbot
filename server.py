@@ -26,6 +26,38 @@ def index():
         }]
     )
 
+@app.route('/pomos_conversion', methods=['POST'])
+def index():
+    data = json.loads(request.get_data())
+    unit_to = data["nlp"]["entities"]["unit-time"][0]["value"]
+
+    value = data["nlp"]["entities"]["duration2"][0]["value"].split()
+    value_v = value[0]
+    try:
+        temp = int(value_v)
+        value_v = temp
+    except ValueError:
+        other_quantities = {"un" : 1}
+        value_v = other_quantities[value_v]
+
+    value_unit = value[1]
+    units = {"horas" : 60, "hora" : 60, "minuto" : 1, "minutos" : 1}
+    multiplier = units[value_unit]
+
+    ans = 0
+    if unit_to in ["pomos", "pomo"]:
+        ans = (value_v * multiplier)/25
+    else:
+        raise Exception("unknown unit")
+    return jsonify(
+        status=200,
+
+        replies=[{
+            'type' : 'text',
+            'content' : 'Son {} {}'.format(ans, unit_to)
+        }]
+    )
+
 @app.route('/errors', methods=['POST'])
 def errors():
   print(json.loads(request.get_data()))
